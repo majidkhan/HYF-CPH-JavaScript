@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
+<body>
+    <main>
+         <form method="POST" action="#"> 
+            <div>
+                <label for="email">Email: </label>
+                <input type="email" id="email" placeholder="Type your email" required>
+            </div>
+            <div>
+                <label for="subject">Subject: </label>
+                <input type="text" id="subject" placeholder="Type subject" required>
+            </div>
+            <div>
+                <label for="message">Type message</label>
+                <textarea id="message" rows="10" cols="40"></textarea>
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        <div class="area-validate"></div>
+        <div class="subject-validate"></div>
+    </main>
+
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+        
+
+</body>
+</html>

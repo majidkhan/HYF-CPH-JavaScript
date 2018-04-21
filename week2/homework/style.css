@@ -1,0 +1,11 @@
+main {
+    width: 800px;
+    margin: 0 auto;
+}
+div {
+    margin: 10px 0;
+}
+
+.fa-4 {
+    font-size: 7em;
+}

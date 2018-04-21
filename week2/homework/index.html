@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+
+</head>
+<body>
+   <main>
+      <h1>Home Work :: Week 2</h1>
+      <h3>1: Create a function that takes 3 arguments and returns the sum of the three arguments.</h3>
+        <pre>
+            <code>
+                function sum (a, b ,c) {
+                return a+b+c;
+                }
+            </code>
+        </pre>
+
+      <h3>2: Create a function named colorCar that receives a color, and prints out, "a red car" for example. (Hint: put it in your file and run it like before.)</h3>
+        <pre>
+            <code>
+                function colorCar ("color") {
+                    return "a " + color + "car";
+                }
+            </code>
+        </pre>
+
+      <div>
+            <i class="fa fa-car fa-4" aria-hidden="true"></i>
+      </div>
+      <div>
+            <i class="fa fa-motorcycle fa-4" aria-hidden="true"></i>
+      </div>
+      
+      <hr>
+      <h3>3: Create an object and a function that takes the object as a parameter and prints out all of its names and values.</h3>
+      <pre>
+        <code>
+            let person = {
+                "firstName" : "Louis",
+                "secondName" : "vuitton",
+                "age" : 52,
+                "country" : "France"
+            };
+            
+            function showPerson(person,first) {
+                var result = "";
+                for (var i in person) {
+                    if (person.hasOwnProperty(i)) {
+                        result += first + '.' + i + ' = ' + person[i] + '\n';
+                    }
+                }
+                return result;
+            }
+            
+            console.log(showPerson(person, "person"));
+        </code>
+      </pre>
+      <code>
+
+      </code>
+      <h3>4: Create a function named vehicleType that receives a color, and a code, 1 for car, 2 for motorbike. And prints "a blue motorbike" for example when called as vehicleType("blue", 2)</h3>
+      <pre>
+          <code>
+                function vehicleType(color, type) {
+                    var color = color;
+                    var auto = "";
+                    switch(type) {
+                        case 1:
+                            auto = "car";
+                            console.log("a " + color + " " + auto);
+                            break;
+                
+                        case 2:
+                            auto = "motorcycle";
+                            console.log("a " + color + " " + auto);
+                            break;
+                        
+                        default:
+                            console.log("Please ente a valid value i.e. 1 or 2 for vehicle type");
+                            break; 
+                    }
+                }
+                
+                vehicleType("Green", 2);              
+          </code>
+      </pre>
+      <h3>5: Writerite the following without the if statement, but with just as a single line with console.log(...);?</h3>
+      <pre>
+          <code>
+                if (3 == 3) {
+                    console.log("true")
+                } else {
+                    console.log("false")
+                } <br><br>
+
+                cosole.log( 3 == 3 ? ture : false ); // Conditional (ternary) Operator
+
+          </code>
+      </pre>
+
+        <h3>6: Create a function called vehicle, like before, but takes another parameter called age, so that vehicle("blue", 1, 5) prints "a blue used car"
+        </h3>
+        <pre>
+            <code>
+                function vehicle (color, type, age) {
+                    var color = color;
+                    var auto = "";
+                    var carAge = "";
+                    carAge = ( age == 0 ? "new" : "used");
+                    switch(type) {
+                        case 1:
+                            auto = "car";
+                            console.log("a " + color + " " + carAge + " " + auto);
+                            break;
+                
+                        case 2:
+                            auto = "motorcycle";
+                            console.log("a " + color + " " + carAge + " " + auto);
+                            break;
+                        
+                        default:
+                            console.log("Please ente a valid value i.e. 1 or 2 for vehicle type and 0 or >0 for car age");
+                            break; 
+                    }    
+                }
+                
+                vehicle("Red", 1, 0);
+            </code>
+        </pre>
+        <h3>7: Make a list of vehicles, you can add "motorbike", "caravan", "bike", or more.        </h3>
+        <pre>
+            <code>
+
+            </code>
+        </pre>
+    
+    </main>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+
+        
+</body>
+</html>
