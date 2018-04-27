@@ -1,15 +1,26 @@
 let btn = document.getElementById("btn");
 let renderContainer = document.getElementById("json-response");
 
+let ourRequest;
 btn.addEventListener('click', function() {
-    let ourRequest = new XMLHttpRequest();
+    ourRequest = new XMLHttpRequest();
+    ourRequest.onreadystatechange = alertContents;
     ourRequest.open('GET','https://api.github.com/orgs/HackYourFuture/repos');
-    ourRequest.onload = function() {
-        const ourData = JSON.parse(ourRequest.responseText);  /// responseText method return data as string. In order to console in browser it must be parsed.
-        renderData(ourData);
-    };
     ourRequest.send();    
 });
+
+function alertContents() {
+    if (ourRequest.readyState === XMLHttpRequest.DONE) {
+        if (ourRequest.status === 200) {
+            ourRequest.onload = function() {
+                const ourData = JSON.parse(ourRequest.responseText);  /// responseText method return data as string. In order to console in browser it must be parsed.
+                renderData(ourData);
+            };
+        } else {
+            alert("There was a problem with the request");
+        }
+    }
+}
 
 function renderData(data) {
     let htmlString = "";
@@ -22,5 +33,6 @@ function renderData(data) {
     }
     htmlString += "</table>";
     renderContainer.insertAdjacentHTML('beforeend', htmlString);
+    btn.innerHTML="JSON data loaded";
 }
 
