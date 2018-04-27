@@ -24,12 +24,14 @@ function alertContents() {
 
 function renderData(data) {
     let htmlString = "";
+    let counter = 1;
     htmlString += "<table class='table table-striped'>";
-    htmlString += "<tr><th>Repository</th><th>Stargazers</th><th>Watchers</th><th>Forks</th><th>language</th></tr>";
+    htmlString += "<tr><th>#</th><th>Repository</th><th>Stargazers</th><th>Watchers</th><th>Forks</th><th>language</th></tr>";
 
     for(let i = 0; i < data.length; i++) {
         console.log(data);
-        htmlString += "<tr><td><a href='" + data[i].html_url + "' target='_blank'>" + data[i].name + "</a></td><td>" + data[i].stargazers_count + "</td><td>" + data[i].watchers + "</td><td>" + data[i].forks + "</td><td>" + data[i].language + "</td></tr>";
+        htmlString += "<tr><td>" + counter + "</td><td><a href='" + data[i].html_url + "' target='_blank'>" + data[i].name + "</a></td><td>" + data[i].stargazers_count + "</td><td>" + data[i].watchers + "</td><td>" + data[i].forks + "</td><td>" + data[i].language + "</td></tr>";
+        counter++;
     }
     htmlString += "</table>";
     renderContainer.insertAdjacentHTML('beforeend', htmlString);
