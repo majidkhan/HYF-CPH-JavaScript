@@ -1,6 +1,16 @@
 let btn = document.getElementById("btn");
 let renderContainer = document.getElementById("json-response");
 
+// 7: Bonus
+let searchText = document.getElementById("searchData");
+console.log(searchText);
+
+searchText.addEventListener('keyup', function() {
+    console.log(searchText.value);
+});
+
+// end bonus
+
 let ourRequest;
 btn.addEventListener('click', function() {
     ourRequest = new XMLHttpRequest();

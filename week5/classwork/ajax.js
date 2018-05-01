@@ -18,6 +18,7 @@ function getRepoNames( data ) {
         element.appendChild(txtNode);
     
         container.appendChild(element);            
+        
     });
 }
 /*
