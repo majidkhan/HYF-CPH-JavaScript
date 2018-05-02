@@ -1,50 +1,46 @@
+// Pankaj Review: "Code is to complex and is difficult to understand. Please make it simple."
+// Solution : Allready provided funtion is used i.e. fetchJSONData(). Tried to make it simple. The code down in the comment is left to show it to mentor that an alternate way to render data. It was taught in class. 
 let btn = document.getElementById("btn");
-let renderContainer = document.getElementById("json-response");
 
-// 7: Bonus
-let searchText = document.getElementById("searchData");
-console.log(searchText);
+function fetchJSONData(url, callbackFn) {
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', function() {
+        console.log("Data loaded.");
+        const data = JSON.parse(xhr.responseText);
+        callbackFn(data);
+    });
+    xhr.open('GET', url);
+    xhr.send();
+}
 
-searchText.addEventListener('keyup', function() {
-    console.log(searchText.value);
-});
+function getRepoNames( data ) {
 
-// end bonus
+    const container = document.getElementById("items");
+    let render_li = "";
+    data.forEach( function(item)  {
+        render_li += `<li class="list-group-item"><a href="${item.html_url}" target="_blank">${item.name}</a></li>`;    // template literals to render data
 
-let ourRequest;
+            /* #########     These commented lines have been replaced by the line of code above   
+            const element = document.createElement("li");
+            element.classList.add('list-group-item');
+            const link = document.createElement("a");
+            link.setAttribute('href',item.html_url);
+            link.setAttribute('target', '_blank');
+            const txtNode = document.createTextNode(item.name);
+            link.appendChild(txtNode);
+            element.appendChild(link);
+            container.appendChild(element);  
+            ############    */
+    });
+    container.innerHTML = render_li;
+    btn.innerHTML = "JSON data loaded";
+
+}
+
+
+
 btn.addEventListener('click', function() {
-    ourRequest = new XMLHttpRequest();
-    ourRequest.onreadystatechange = alertContents;
-    ourRequest.open('GET','https://api.github.com/orgs/HackYourFuture/repos');
-    ourRequest.send();    
+    fetchJSONData('https://api.github.com/orgs/HackYourFuture/repos', function(repoList) {
+        getRepoNames(repoList);
+    });  
 });
-
-function alertContents() {
-    if (ourRequest.readyState === XMLHttpRequest.DONE) {
-        if (ourRequest.status === 200) {
-            ourRequest.onload = function() {
-                const ourData = JSON.parse(ourRequest.responseText);  /// responseText method return data as string. In order to console in browser it must be parsed.
-                renderData(ourData);
-            };
-        } else {
-            alert("There was a problem with the request");
-        }
-    }
-}
-
-function renderData(data) {
-    let htmlString = "";
-    let counter = 1;
-    htmlString += "<table class='table table-striped'>";
-    htmlString += "<tr><th>#</th><th>Repository</th><th>Stargazers</th><th>Watchers</th><th>Forks</th><th>language</th></tr>";
-
-    for(let i = 0; i < data.length; i++) {
-        console.log(data);
-        htmlString += "<tr><td>" + counter + "</td><td><a href='" + data[i].html_url + "' target='_blank'>" + data[i].name + "</a></td><td>" + data[i].stargazers_count + "</td><td>" + data[i].watchers + "</td><td>" + data[i].forks + "</td><td>" + data[i].language + "</td></tr>";
-        counter++;
-    }
-    htmlString += "</table>";
-    renderContainer.insertAdjacentHTML('beforeend', htmlString);
-    btn.innerHTML="JSON data loaded";
-}
-

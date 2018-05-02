@@ -21,16 +21,6 @@ function getRepoNames( data ) {
         
     });
 }
-/*
-// My Code
-fetchJSONData('https://api.github.com/orgs/HackYourFuture/repos', function(repoList) {
-    console.log(repoList);
-    getRepoNames(repoList);
-});
-*/
-
-// Pankaj code
-
 
 fetchJSONData('https://api.github.com/orgs/HackYourFuture/repos', function(repoList) {
     for(let i= 0; i < repoList.length; i++) {
