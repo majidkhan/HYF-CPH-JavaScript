@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>HYF-JS2 Week 5 Homework</title>
+    <title>HYF-JS2 Week 6 Homework</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -12,12 +12,18 @@
 </head>
 <body>
     <main>
-        <header><img src="https://avatars2.githubusercontent.com/u/20858568?v=4" id="hyf-avatar" alt="HackYourFuture Avatar" width="120px"><span><a href="index.html" class="logo text-danger">HYF-JS2-Week5</a></span></header>
+        <header>
+            <img src="https://avatars2.githubusercontent.com/u/20858568?v=4" id="hyf-avatar" alt="HackYourFuture Avatar" width="120px">
+            <span><a href="index.html" class="logo text-danger">HYF-JS2-Week6</a></span>
+        </header>
         <div>
-            <h1>Homework Week 6 : Render data using JSON</h1>
-            <h2>Display data from JSON</h2>
-            <button id="btn" type="button" class="btn btn-secondary">Click to load JSON data</button>
-            <ul id="items" class="list-group"></ul>
+            <h1>Homework Week 6</h1>
+            <h2>Display data from JSON sending arguments in URL</h2>
+            <form class="form-inline my-2 my-lg-0">
+                <input type="text" name="user-input" class="form-control user-input col-sm-8 mr-sm-2" id="user-input">
+                <button id="btn" type="button" class="btn btn-outline-success col-sm-3">Search HYF Repos</button>    
+            </form>
+            <ul id="items" class="list-group mt-3"></ul>
             <div id="json-response"></div>
         </div>
         <footer>&copy; Majid Khan | HackYourFuture Channel 5</footer>
