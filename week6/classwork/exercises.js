@@ -68,24 +68,24 @@ const giphyUrl = 'http://api.giphy.com/v1/gifs/search?api_key=' + api_key + '&q=
 const url = 'https://api.spacexdata.com/v2/launches';
 
 
-function isSuccessLaunch(launch) {
+function isSuccessfulLaunch(launch) {
     return launch.launch_success;
 }
 
 getAjaxData(url, function(data) {
     console.log("All Launch Data ", data);
 
-    const allSuccessLanuches = data.filter(isSuccessLaunch);
+    const allSuccessfulLanuches = data.filter(isSuccessfulLaunch);
 
 //    console.log("All Success Launches", allSuccessLanuches);
 
-    const firstSuccessLaunch = allSuccessLanuches[0];
+    const firstSuccessfulLaunch = allSuccessfulLanuches[0];
 
-    console.log("First Success launch", firstSuccessLaunch);
-    const firstSuccessLaunchName = firstSuccessLaunch.rocket.rocket_name;
-    console.log("Launch Name", firstSuccessLaunchName);
+    console.log("First Success launch", firstSuccessfulLaunch);
+    const firstSuccessfulLaunchName = firstSuccessfulLaunch.rocket.rocket_name;
+    console.log("Launch Name", firstSuccessfulLaunchName);
     const span = document.querySelector('.rocket-name');
-    span.innerHTML = firstSuccessLaunchName;
+    span.innerHTML = firstSuccessfulLaunchName;
 });
 
 
@@ -98,20 +98,21 @@ const giphyUrl = 'http://api.giphy.com/v1/gifs/search?api_key=' + api_key + '&q=
 
 const ul = document.querySelector('.gif-items');
 
-function getGifiData(gifiData) {
+function getGiphyData(giphyData) {
     let output = "";
-    for (let data in gifiData) {
-        output += gifiData.data;
+    for (let data in giphyData) {
+        output += giphyData.data;
     }
-    return output; 
+    return output;
 }
 
-function renderGifiData(gifiData) {
-    for(let j=0; j<gifiData.length; j ++) {
+function renderGiphyData(giphyData) {
+    console.log("GiphyData-Render",giphyData);
+    for(let j=0; j<giphyData.data.length; j ++) {
         const li = document.createElement('li');
         const gifiImg = document.createElement('img');
-        gifiImg.src = gifiData[j].images.original.url;
-        gifiImg.alt = gifiData[j].title;
+        gifiImg.src = giphyData.data[j].images.original.url;
+        gifiImg.alt = giphyData.data[j].title;
         li.appendChild(gifiImg);
         ul.appendChild(li);        
     }
@@ -119,14 +120,13 @@ function renderGifiData(gifiData) {
 getAjaxData(giphyUrl, function(searchResults) {
 
     console.log("Search Results ", searchResults);
-    
-    const allGifiData = searchResults.data.filter(getGifiData);
-    console.log("All Gifi Data", allGifiData);
-
-    renderGifiData(allGifiData);
+    /*
+    const allgiphyData = searchResults.data.filter(getGiphyData);
+    console.log("All Gifi Data", allgiphyData);
+*/
+    renderGiphyData(searchResults);
 
 });
-
 
 
 
@@ -148,7 +148,7 @@ console.log(btn);
 const input = document.querySelector('.user-input');
 
 btn.addEventListener('click', function () {
-    if(input.value != "" && input.value >= 1 && input.value <= 6 ) {
+    if(input.value !== "" && input.value >= 1 && input.value <= 6 ) {
         let userInput = input.value;
         console.log(userInput);
         input.value = "";
