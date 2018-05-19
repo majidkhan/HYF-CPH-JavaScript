@@ -30,30 +30,103 @@ function setTag(movie) {
 }
 
 
-getAjaxData(moviesUrl, function(objMovies) {
-//    const allMoviesTag = objMovies.filter(setTag);
-
-//    console.log(allMoviesTag);
+function getRating (objMovies) {
+    // Add property TAG
     for(let i=0; i < objMovies.length; i++) {
         if(objMovies[i].rating >= 7) {
             objMovies[i].tag = "Good";
-//            console.log(objMovies[i]);
         }
         else if(objMovies[i].rating < 7 && objMovies[i].rating >=4 ) {
             objMovies[i].tag = "Average";
-//            console.log(objMovies[i]);
         }
         else {
             objMovies[i].tag = "Bad";
-//            console.log(objMovies[i]);
         }
     }
 
+    // Calculate total rating of all moves
     const allRatings = objMovies.map( movie => movie.rating );
     const totalRatings = allRatings.reduce(function(firstVal,nextVal) {
         return firstVal + nextVal;
     });
-    console.log("Total Ratings", totalRatings);
+    console.log("Total Ratings:", totalRatings);
+    // Calculate average rating of all movies
     const averageRating = totalRatings / allRatings.length;
-    console.log("Average Ratings", averageRating);
+    console.log("Average Ratings:", averageRating);
+}
+
+function goodMovie(movie) {
+    return movie.rating >= 7;
+}
+function averageMovie(movie) {
+    return movie.rating >= 4 && movie.rating < 7;
+}
+
+function badMovie(movie) {
+    return movie.rating < 4; 
+}
+
+function hasTitle(movie) {
+    return movie.title === "";
+}
+
+function moviesBetween(movie,startRange,endRange) {
+    return (movie.year > startRange && movie.year < endRange);
+}
+
+function getGoodMoviesCount(objMovies) {
+
+    const allGoodMovies = objMovies.filter(goodMovie);
+    console.log("Total good movies:", allGoodMovies.length);
+    const allAverageMovie = objMovies.filter(averageMovie);
+    console.log("Total average movies:", allAverageMovie.length);
+    const allBadMovies = objMovies.filter(badMovie);
+    console.log("Total bad movies:", allBadMovies.length);
+}
+
+function doesItHave(objMovies) {
+    // Keywords to search into movies title's
+    const lookForList = ["The", "dog", "who", "is", "not", "a", "man"];
+
+    const onlyMovieTitles = objMovies.map(t => t.title);
+    console.log("Total titles:",onlyMovieTitles);
+
+    const moviesContainsTitle = onlyMovieTitles.filter( function(title) {
+        const x = title.split(" ");
+        for(let i = 0; i < x.length; i ++) {
+            for( let k = 0; k < lookForList.length; k++) {
+                if(x[i] === lookForList[k]) {
+                    return x;
+                }
+            }
+        }
+    });
+    console.log("All that Contains",moviesContainsTitle);
+    console.log("Movies containing required keyword:",moviesContainsTitle.length); 
+ 
+}
+
+function moviesFrom80To89(objMovies) {
+    const allMovies = objMovies.filter( movie => (movie.year >= 1980 && movie.year <= 1989) );
+    console.log("Movies from 80 to 89:", allMovies)
+    console.log("Count movies between 80s:", allMovies.length);
+}
+
+
+getAjaxData(moviesUrl, function(objMovies) {
+    console.log(objMovies);
+//    const allMoviesTag = objMovies.filter(setTag);
+
+    // 2.1 & 2.2 - Give each movie a tag and calculate average rating of all movies
+    getRating(objMovies);
+
+    //2.3 Count the total number of Good, Average and Bad movies.
+    getGoodMoviesCount(objMovies);
+
+    // 2.4 Movies containing keywork
+    doesItHave(objMovies);
+
+    // 2.5 Get movies from 1980 to 1989
+    moviesFrom80To89(objMovies);
+
 });
