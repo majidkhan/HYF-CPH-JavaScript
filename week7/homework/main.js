@@ -29,6 +29,45 @@ function setTag(movie) {
     else movie.tag = "Bad";
 }
 
+// double odd number in an array
+function makeOddDouble() {
+
+    let numbers = [1, 2, 3, 4];
+    let newNumbers = [];
+
+    
+
+    newNumbers = numbers.filter( item => item %2 !== 0).map( item => item * 2);;
+
+    /*
+    for(let i = 0; i < numbers.length; i++) {
+        if(numbers[i] % 2 !== 0) {
+            newNumbers[i] = numbers[i] * 2;
+        }
+    }*/
+
+    console.log("The doubled numbers are ", newNumbers); // [2, 6]
+}
+
+function goodMovie(movie) {
+    return movie.rating >= 7;
+}
+function averageMovie(movie) {
+    return movie.rating >= 4 && movie.rating < 7;
+}
+
+function badMovie(movie) {
+    return movie.rating < 4; 
+}
+
+function hasTitle(movie) {
+    return movie.title === "";
+}
+
+function moviesBetween(movie,startRange,endRange) {
+    return (movie.year > startRange && movie.year < endRange);
+}
+
 
 function getRating (objMovies) {
     // Add property TAG
@@ -55,25 +94,6 @@ function getRating (objMovies) {
     console.log("Average Ratings:", averageRating);
 }
 
-function goodMovie(movie) {
-    return movie.rating >= 7;
-}
-function averageMovie(movie) {
-    return movie.rating >= 4 && movie.rating < 7;
-}
-
-function badMovie(movie) {
-    return movie.rating < 4; 
-}
-
-function hasTitle(movie) {
-    return movie.title === "";
-}
-
-function moviesBetween(movie,startRange,endRange) {
-    return (movie.year > startRange && movie.year < endRange);
-}
-
 function getGoodMoviesCount(objMovies) {
 
     const allGoodMovies = objMovies.filter(goodMovie);
@@ -87,15 +107,16 @@ function getGoodMoviesCount(objMovies) {
 function doesItHave(objMovies) {
     // Keywords to search into movies title's
     const lookForList = ["The", "dog", "who", "is", "not", "a", "man"];
+    const lookForListMap = lookForList.map(title => title.toLowerCase());
 
-    const onlyMovieTitles = objMovies.map(t => t.title);
+    const onlyMovieTitles = objMovies.map(t => t.title.toLowerCase());
     console.log("Total titles:",onlyMovieTitles);
 
     const moviesContainsTitle = onlyMovieTitles.filter( function(title) {
         const x = title.split(" ");
         for(let i = 0; i < x.length; i ++) {
-            for( let k = 0; k < lookForList.length; k++) {
-                if(x[i] === lookForList[k]) {
+            for( let k = 0; k < lookForListMap.length; k++) {
+                if(x[i] === lookForListMap[k]) {
                     return x;
                 }
             }
@@ -114,6 +135,10 @@ function moviesFrom80To89(objMovies) {
 
 
 getAjaxData(moviesUrl, function(objMovies) {
+
+    // doubles the odd numbers in an array
+    makeOddDouble();
+
     console.log(objMovies);
 //    const allMoviesTag = objMovies.filter(setTag);
 
