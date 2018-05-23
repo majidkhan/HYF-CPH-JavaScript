@@ -48,10 +48,12 @@ for(let o = 1; o <= 30; o++) {
     otherArr.push(o);
 }
 
-function getDivisiblesBy(number) {
-        const res = arr.filter(x => x%number === 0);
-//        console.log(`numbers divisible by ${number} are ${res}`);
-        console.log(`Total numbers divisible by ${number}: ${res.length}`);
-}
 
-otherArr.map(x=> getDivisiblesBy(x));
+const divisibleFactory = n => {
+    let res = arr.filter(x => x%n === 0);
+    console.log(`Total numbers divisible by ${n}: ${res.length}`);
+}
+const numberDivBy21 = divisibleFactory(21);
+console.dir(numberDivBy21); 
+
+otherArr.map(x=> divisibleFactory(x));
