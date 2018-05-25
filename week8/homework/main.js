@@ -7,6 +7,7 @@ for( let i=1; i<=1000;i++){
 }
 console.log(arr);
 
+/*
 // here the solution using loops starts
 const x = 3;
 let divisbleBy3 = [];
@@ -37,6 +38,7 @@ for(let i=0;i<arr.length;i++){
 }
 console.log("Numbers divisible by 21: ",divisbleBy21);
 console.log("Amount of numbers divisible by 21: ",divisbleBy21.length);
+<<<<<<< HEAD
 
 function generateNumbersArray(n) {
     const numbers = [];
@@ -50,3 +52,24 @@ const numbers = generateNumbersArray(1000);
 const dividers = generateNumbersArray(30);
 
 console.log("Numbers",numbers);
+=======
+*/
+
+// Solution to step 1
+
+let otherArr = [];
+
+for(let o = 1; o <= 30; o++) {
+    otherArr.push(o);
+}
+
+
+const divisibleFactory = n => {
+    let res = arr.filter(x => x%n === 0);
+    console.log(`Total numbers divisible by ${n}: ${res.length}`);
+}
+const numberDivBy21 = divisibleFactory(21);
+console.dir(numberDivBy21); 
+
+otherArr.map(x=> divisibleFactory(x));
+>>>>>>> fe212416c3bf4d72856fec1ede9a7c73e065adfd
