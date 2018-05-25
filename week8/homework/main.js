@@ -37,3 +37,16 @@ for(let i=0;i<arr.length;i++){
 }
 console.log("Numbers divisible by 21: ",divisbleBy21);
 console.log("Amount of numbers divisible by 21: ",divisbleBy21.length);
+
+function generateNumbersArray(n) {
+    const numbers = [];
+    for (i=1; i<=n; i++) {
+        numbers.push(i);
+    }
+    return numbers;
+} 
+
+const numbers = generateNumbersArray(1000);
+const dividers = generateNumbersArray(30);
+
+console.log("Numbers",numbers);
