@@ -1,45 +1,6 @@
 
 // Step 1
 
-let arr = [];
-for( let i=1; i<=1000;i++){
-    arr.push(i);
-}
-console.log(arr);
-
-/*
-// here the solution using loops starts
-const x = 3;
-let divisbleBy3 = [];
-for(let i=0;i<arr.length;i++){
-    if(arr[i]%x===0){
-        divisbleBy3.push(arr[i]);
-    }
-}
-console.log("Numbers divisible by 3: ",divisbleBy3);
-console.log("Amount of numbers divisible by 3: ",divisbleBy3.length);
-
-const y = 10;
-let divisbleBy10 = [];
-for(let i=0;i<arr.length;i++){
-    if(arr[i]%y===0){
-        divisbleBy10.push(arr[i]);
-    }
-}
-console.log("Numbers divisible by 10: ",divisbleBy10);
-console.log("Amount of numbers divisible by 10: ",divisbleBy10.length);
-
-const z = 21;
-let divisbleBy21 = [];
-for(let i=0;i<arr.length;i++){
-    if(arr[i]%z===0){
-        divisbleBy21.push(arr[i]);
-    }
-}
-console.log("Numbers divisible by 21: ",divisbleBy21);
-console.log("Amount of numbers divisible by 21: ",divisbleBy21.length);
-<<<<<<< HEAD
-
 function generateNumbersArray(n) {
     const numbers = [];
     for (i=1; i<=n; i++) {
@@ -48,28 +9,74 @@ function generateNumbersArray(n) {
     return numbers;
 } 
 
+// return number if divisible
+function isDivider(number, divider) {
+    return number % divider === 0;
+}
+
+function divisibilityCheckerFactory(x) {
+
+    // using for loop
+    /*
+    function checkerFn(n) {
+        let divisibles = [];
+        for(i = 1; i <= n.length; i++) {
+            if(i % x === 0) {
+                divisibles.push(i);
+            }
+        }
+        return divisibles;
+    }
+
+    return checkerFn;
+    */
+
+    // Same thing can be written using Arrow functions as well
+    // Try to do it at your own
+    function lookerFn(n) {
+        if(Array.isArray(n)) {
+            return n.filter(i => isDivider(i,x));
+        } else {
+            divisibles = [];
+            for(i = 1; i <= n; i++) {
+                if(isDivider(i,x)) {
+                    divisibles.push(i);
+                }
+            }
+            return divisibles;
+        }
+    }
+    return lookerFn;
+}
+
+/*
+    Following functions returns total numbers divided by each number out of divider
+*/
+
+function checkDivisibilityFor1to30() {
+    let divisibles = [];
+    dividers.map(divider => {
+        let checkDivisibility = divisibilityCheckerFactory(divider);
+        divisibles.push(checkDivisibility(numbers).length);
+    });
+    return divisibles;
+}
+
+
 const numbers = generateNumbersArray(1000);
 const dividers = generateNumbersArray(30);
 
-console.log("Numbers",numbers);
-=======
-*/
+const checkDivisibilityBy3 = divisibilityCheckerFactory(3);
+const checkDivisibilityBy10 = divisibilityCheckerFactory(10);
+const checkDivisibilityBy21 = divisibilityCheckerFactory(21);
 
-// Solution to step 1
+console.log("Numbers divisible by 3: ",checkDivisibilityBy3(numbers));
+console.log("Amount of numbers divisible by 3: ",checkDivisibilityBy3(numbers).length);
 
-let otherArr = [];
+console.log("Numbers divisible by 10: ",checkDivisibilityBy10(numbers));
+console.log("Amount of numbers divisible by 10: ",checkDivisibilityBy10(numbers).length);
 
-for(let o = 1; o <= 30; o++) {
-    otherArr.push(o);
-}
+console.log("Numbers divisible by 21: ",checkDivisibilityBy21(numbers));
+console.log("Amount of numbers divisible by 21: ",checkDivisibilityBy21(numbers).length);
 
-
-const divisibleFactory = n => {
-    let res = arr.filter(x => x%n === 0);
-    console.log(`Total numbers divisible by ${n}: ${res.length}`);
-}
-const numberDivBy21 = divisibleFactory(21);
-console.dir(numberDivBy21); 
-
-otherArr.map(x=> divisibleFactory(x));
->>>>>>> fe212416c3bf4d72856fec1ede9a7c73e065adfd
+console.log("Amount of numbers divisible by 1 to 30: ",checkDivisibilityFor1to30());
