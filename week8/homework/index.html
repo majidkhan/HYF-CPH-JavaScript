@@ -6,10 +6,21 @@
     <title>HYF-CPH-JS2 :: Week8 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
     <main>
         <h1>JavaScript 2 : Week8</h1>
+        <h3>Search for Movies</h3>
+        <form class="form-inline my-2 my-lg-0">
+            <input type="text" name="user-input" class="form-control user-input col-md-8 col-sm-8 mr-sm-2 mb-2" id="user-input">
+            <button id="btn" type="button" class="btn btn-outline-success col-md-3 col-sm-3 mb-2">Search Movies</button>    
+        </form>
+        <h3>Al Movies</h3>
+        <div id="allMovies">
+            <ul class="list-group"></ul>
+        </div>
     </main>
 
     <script src="main.js"></script>
