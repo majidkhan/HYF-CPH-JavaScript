@@ -33,7 +33,6 @@ nav:after {
 a.logo {
 	width: 30%;
 	text-decoration: none;
-	float: left;
 	font-family: 'Monoton', cursive;
 	font-size: 18px;
 }
@@ -61,6 +60,9 @@ footer {
 	text-align: center;	
 }
 header {
-	margin: 1em auto;
-	text-align: center;
+	margin: 2em auto;
+	border-bottom: 1px solid black;
+}
+header img {
+    margin-right: 2em;
 }
