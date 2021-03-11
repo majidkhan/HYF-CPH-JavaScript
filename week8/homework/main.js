@@ -117,11 +117,15 @@ function getAjaxData(url) {
     });
 }
 
+function excellentMovie(movie) {
+    return movie.rating >= 85;
+}
+
 // function to Add Tag property
 function setMovieTag(movie) {
     if(movie.rating >= 8.5) {
         movie.tag = "Excellent";
-    }else if(movie.rating >=8) {
+    }else if(movie.rating >= 8) {
         movie.tag = "Very Good";
     }else {
         movie.tag = "Good";
@@ -139,12 +143,41 @@ function filterItems(movies, query) {
     })
 }
 
+function filterByTag(movies, rating) {
+    return movies.filter(function(movie){
+        movie.rating = rating;
+    })
+}
+
 function createLi(items) {
+    const moviesFound = document.querySelector("#moviesFound");
+    moviesFound.innerHTML = "";
+    moviesFound.innerHTML = items.length;
     let moviesList = "";
-    items.forEach(movie => {
-        moviesList += `<li class="list-group-item">${movie.title}</li>`;
+    moviesList += "<table class='table table-striped'>";
+    moviesList += `<thead><tr><th>#</th><th>Movie</th> <th>Review</th></tr></thead>`;
+
+    items.forEach((movie, index) => {
+        moviesList += `<tr><td>${index+1}</td><td>${movie.title}</td><td>${movie.tag}</td></tr>`;
     });
+    moviesList += "</table>";
     movieContainer.innerHTML = moviesList;
+}
+
+// filter movies based on tag - when user click radio button i.e. all movies, excellent, very good or good 
+
+function filterMoviesByTag(movies) {
+    const radioAllMovies = document.querySelector("#allMovies"); 
+    const radioExcellentMovies = document.querySelector("#excellentMovies");     
+    const radioVeryGoodMovies = document.querySelector("#veryGoodMovies"); 
+    const radioGoodMovies = document.querySelector("#goodMovies");
+    if(radioAllMovies.checked) {
+        console.log("movies",movies);
+    }else if(radioExcellentMovies.checked) {
+        const excellent = movies.filter(excellentMovie);
+
+        console.log("excellent movies",excellent);
+    }
 }
 
 // function to list all movies on homepage
@@ -155,6 +188,7 @@ function renderMovies(movies) {
     movieContainer.innerHTML = "";
     createLi(movieMatched);
 }   
+
 
 function getTimeOutPromise() {
     return new Promise((resolve, reject) => {
@@ -173,13 +207,15 @@ timeOutPromise
     .then((movies) => {
         // 2.1  Set movie tag
         movies.filter(movie => setMovieTag(movie));
-
+        console.log("Movies by tag", movies);
         // 2.2  List all movies on webpage
         createLi(movies);
         // 2.3 - show movies that matches user input
         btn.addEventListener('click', function() {
             renderMovies(movies);
+
+//            filterMoviesByTag(moviesByTag);
+
         });
 
     })
-

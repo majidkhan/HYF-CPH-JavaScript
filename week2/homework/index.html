@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>HYF-JS-Week2 :: Homework</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
@@ -11,6 +11,8 @@
 </head>
 <body>
    <main>
+       <header>HackYourFuture</header>
+       <hr>
       <h1>Home Work :: Week 2</h1>
       <h3>1: Create a function that takes 3 arguments and returns the sum of the three arguments.</h3>
         <pre>
@@ -67,27 +69,27 @@
       <h3>4: Create a function named vehicleType that receives a color, and a code, 1 for car, 2 for motorbike. And prints "a blue motorbike" for example when called as vehicleType("blue", 2)</h3>
       <pre>
           <code>
-                function vehicleType(color, type) {
-                    var color = color;
-                    var auto = "";
-                    switch(type) {
-                        case 1:
-                            auto = "car";
-                            console.log("a " + color + " " + auto);
-                            break;
-                
-                        case 2:
-                            auto = "motorcycle";
-                            console.log("a " + color + " " + auto);
-                            break;
-                        
-                        default:
-                            console.log("Please ente a valid value i.e. 1 or 2 for vehicle type");
-                            break; 
-                    }
+            function vehicleType(color, type) {
+                let auto = "";
+                switch(type) {
+                    case 1:
+                        auto = "car";
+                        console.log("a " + color + " " + auto);
+                        break;
+            
+                    case 2:
+                        auto = "motorcycle";
+                        console.log("a " + color + " " + auto);
+                        break;
+                    
+                    default:
+                        console.log("Please ente a valid value i.e. 1 or 2 for vehicle type");
+                        break; 
                 }
-                
-                vehicleType("Green", 2);              
+            }
+            
+            vehicleType("Green", 2);
+                         
           </code>
       </pre>
       <h3>5: Writerite the following without the if statement, but with just as a single line with console.log(...);?</h3>
@@ -108,20 +110,23 @@
         </h3>
         <pre>
             <code>
+                const carAge = function(age) {
+                    return age == 0 ? "new" : "used"
+                }
+                
+                
                 function vehicle (color, type, age) {
-                    var color = color;
-                    var auto = "";
-                    var carAge = "";
-                    carAge = ( age == 0 ? "new" : "used");
+                    let auto = "";
+                
                     switch(type) {
                         case 1:
                             auto = "car";
-                            console.log("a " + color + " " + carAge + " " + auto);
+                            console.log("a " + color + " " + carAge(age) + " " + auto);
                             break;
                 
                         case 2:
                             auto = "motorcycle";
-                            console.log("a " + color + " " + carAge + " " + auto);
+                            console.log("a " + color + " " + carAge(age) + " " + auto);
                             break;
                         
                         default:
@@ -131,15 +136,96 @@
                 }
                 
                 vehicle("Red", 1, 0);
+
             </code>
         </pre>
         <h3>7: Make a list of vehicles, you can add "motorbike", "caravan", "bike", or more.        </h3>
         <pre>
             <code>
-
+                let vehicleList = [];
+                vehicleList.push("motorbike", "caravan", "bike", "car", "truck", "bus", "train", "boat", "aircraft");
             </code>
         </pre>
-    
+
+        <h3>8: Get 3rd element from the list of vehicles.</h3>
+        <pre>
+            <code>
+                const thirdVehicle = vehicleList[2]
+            </code>
+        </pre>
+        
+        <h3>9: Change the function vehicle to use the list of question 4. So that vehicle("green", 3, 1) prints "a green new caravan".</h3>
+
+        <pre>
+            <code>
+                const carType = function(type) {
+                    if(vehicleList[type] === 'undefined') {
+                        console.log("Please enter an integer 0 to 8");
+                    } else {
+                        return vehicleList[type];
+                    }
+                }
+                
+                function getVehicle(color, age, type) {
+                //    const color1 = color;
+                //    const age1 = carAge(age);
+                    console.log("A ", color, carAge(age), carType(type)) ;
+                }
+                getVehicle("Yellow", 0, 1);
+            </code>
+        </pre>
+
+        <h3>10: Use the list of vehicles to write an advertisement. </h3>
+
+        <pre>
+            <code>
+                // using for loop
+                function advertisement(x) {
+                    let r = "";
+                    for (let i = 0; i < x.length - 1; i++) { 
+                        r += x[i] + 's, ';
+                    }
+                    r += x[x.length-1] + 's';  
+                    return r;
+                }
+                
+                // without using for loop
+                const addString = vehicleList.map(function(vehicle){
+                    return vehicle + "s";
+                }).join("s, ");
+                
+                
+                console.log("Amazing Joe's Garage, we service", advertisement(vehicleList));                
+            </code>
+        </pre>
+
+        <h3>11: Add one more vehicle to the vehicle list</h3>
+        <pre>
+            <code>
+                vehicleList.push('cycle');
+                console.log(vehicleList);
+            </code>
+        </pre>
+
+        <h3>12: Create an empty object</h3>
+        <pre>
+            <code>
+                const anEmptyObj = new Object;
+                console.log(anEmptyObj);                
+            </code>
+        </pre>
+
+        <h3>Pass function as arguments to other function </h3>
+        <pre>
+            <code>
+                
+            </code>
+        </pre>
+
+
+
+        <hr>
+    <footer>&copy; Majid Khan 2018 - HackYourFuture Copenhagen</footer>
     </main>
     <script
     src="https://code.jquery.com/jquery-3.3.1.js"

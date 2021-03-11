@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
-    <main>
+    <main class="container">
         <!-- Header -->
         <header>
             <img src="https://avatars2.githubusercontent.com/u/20858568?v=4" id="hyf-avatar" alt="HackYourFuture Avatar" width="120px">
@@ -18,11 +18,40 @@
         </header>        
         <h1>JavaScript 2 : Week8</h1>
         <h3>Search for Movies</h3>
-        <form class="form-inline my-2 my-lg-0">
-            <input type="text" name="user-input" class="form-control user-input col-md-8 col-sm-8 mr-sm-2 mb-2" id="user-input">
-            <button id="btn" type="button" class="btn btn-outline-success col-md-3 col-sm-3 mb-2">Search Movies</button>    
-        </form>
-        <h3>Al Movies</h3>
+        <form>
+            <div class="row">
+                <input type="text" name="user-input" class="form-control user-input col-md-8 col-sm-8 mr-sm-2 mb-2" id="user-input">
+                <button id="btn" type="button" class="btn btn-outline-success col-md-3 col-sm-3 mb-2">Search Movies</button>        
+            </div>
+            <div class="row">
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="tag" id="allMovies" value="option1" checked>
+                <label class="form-check-label mr-3" for="allMovies">
+                    All
+                </label>
+                </div>
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="tag" id="excellentMovies" value="option2">
+                <label class="form-check-label mr-3" for="excellentMovies">
+                    Excellent
+                </label>
+                </div>
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="tag" id="veryGoodMovies" value="option3">
+                <label class="form-check-label mr-3" for="veryGoodMovies">
+                    Very Good
+                </label>
+                </div>           
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="tag" id="goodMovies" value="option4">
+                <label class="form-check-label" for="goodMovies">
+                    Good
+                </label>
+                </div>
+            </div>
+        </form>    
+        <h3>All Movies</h3>
+        <h3>Movies found: <span id="moviesFound"></span></h3>
         <div id="allMovies">
             <ul class="list-group"></ul>
         </div>
